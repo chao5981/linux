@@ -16,4 +16,18 @@ uboot里面的大部分文件夹我们是不需要进行改动的。
 
   知道了自己关注的是哪部分的源码，那么我们不妨编译一下，**看看它编译的时候编译了哪些文件，那么不就知道我们要留意哪些文件了吗？**
 
+  在编译之前，我们至少了解uboot是如何编译的。
+
+  具体请见**uboot启动流程.md**一节，这里就简单点说。
+
+  Makefile需要一个.config文件告诉它要编译uboot众多文件中的哪些文件，而.config文件需要一个xxx_deconfig文件生成。因此，逻辑链为：我们需要
+make一个xxx_deconfig文件以生成一个.config文件，然后再make编译相关的uboot源码。
+
+  好，由于我用的板子相关的deconfig
+
+    1 #!/bin/bash
+    2 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- distclean
+    3 make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- mx6ull_14x14_ddr512_emmc_defconfig
+    4 make V=1 ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -j12                                                       
+
   
