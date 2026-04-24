@@ -1,34 +1,24 @@
- #这一节对实际uboot移植帮助不大，更多是素养的提升#
 
- 首先，uboot是从arch/arm/vector.S开始启动的，通过这个文件，跳转到reset部分。具体流程如图所示：
-
- <img width="1612" height="895" alt="image" src="https://github.com/user-attachments/assets/bbd13110-b281-41fb-9277-f4b34b5f0982" />
+uboot文件夹含义解释
+<img width="1136" height="748" alt="533552e502eda5d0ac4aebc362a62541" src="https://github.com/user-attachments/assets/e12c473b-34b5-4994-8a91-aa55e5e4af8a" />
 
 
- 而reset部分在哪？在这之前需要了解编译uboot后的各个文件夹的具体作用了，如表格所示：
- 
-
-<img width="1136" height="748" alt="dc3b5c427481a789bb882098df828f68" src="https://github.com/user-attachments/assets/950db4bd-2b28-495c-b3f4-c16b6f37fb45" />
-
-<img width="807" height="716" alt="9560630225c516b4dda64f15d6d7f098" src="https://github.com/user-attachments/assets/da0d4a86-10d1-4359-8b5a-c6b06f8fcc2d" />
-
-可以先这样简单的理解：
-
-api,cmd,common,disk等文件我们均不需要管，这属于uboot的库文件，相对uboot还要底层，无需修改
-
-arch存放着不同架构的启动代码，分析启动流程时需要了解，但其实对uboot移植帮助不大
-
-board存储着各个板子的专属的初始化代码，因为每个板子有不同的外设布局，uboot要初始化部分外设，而外设与主控芯片的连接引脚可能是不同的，因此相关厂家需要自己写一份能用的初始化代码到uboot文件夹中
-
-config为uboot源码的通用配置文件，不涉及外设，用于给Makefile传参，告诉Makefile需要编译哪些文件生成uboot文件
-
-Kconfig是图形化配置文件，后面需要用到
-
-因此，在了解的时候，我们需要关注arch,board,config,Kconfig,Makefile文件即可
-
-那么接着分析源码。uboot执行完reset后会跳转到相应信号的start.S文件中。
-
-而每一个不同框架的厂家会有自己的start.S，放到arch文件夹中，我们用的是arm芯片，所以只需要关心arm文件夹;接着由于我们是IMX6UL,是imx-common结构，
+<img width="807" height="716" alt="c46db67195045b5f2305eaad936af32e" src="https://github.com/user-attachments/assets/ee8616df-ecbd-4413-b37e-984b012f4978" />
 
 
- 
+makefile文件详解
+<img width="1320" height="622" alt="41ba77a21d80d56c94e0596caf6d39e4" src="https://github.com/user-attachments/assets/181a2714-265f-4d0f-a8a3-2f987b00c31f" />
+
+make指令流程
+<img width="968" height="745" alt="1fef63d5d13085cc883f325bde44a904" src="https://github.com/user-attachments/assets/7c15f43b-f4ff-4cb5-ae75-644f99348a7a" />
+
+前俩篇的具体博客，写的比正点原子简介
+https://blog.csdn.net/xi_xix_i/article/details/134918576
+
+uboot启动流程大体框架
+<img width="949" height="650" alt="ab6b31d5c4021d83f88379b7dee485ad" src="https://github.com/user-attachments/assets/9a38c9a8-8487-4350-8ec3-7b983caad86d" />
+
+uboot启动流程代码详解
+<img width="1053" height="485" alt="3717774c1ab49f8d19a1c61ea2c49c4a" src="https://github.com/user-attachments/assets/a372177c-6958-41a9-b570-87bfd2672336" />
+
+
