@@ -1,4 +1,4 @@
-<img width="1519" height="746" alt="image" src="https://github.com/user-attachments/assets/101c778c-396a-4ff7-9fa1-aeef784a1f61" />##uboot移植##
+##uboot移植##
 
   网上的uboot移植指南，有一种知其然而不知其所以然的感觉。因此我自己理了一份uboot移植指南，方便自己回忆和修改，也希望能给探究uboot移植的朋友们
 提供一个新的思路
