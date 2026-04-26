@@ -73,6 +73,38 @@ make一个xxx_deconfig文件以生成一个.config文件，然后再make编译�
 
   我现在所用的蓝本是mx6ull_14x14_evk_emmc_defconfig，于是复制并重新命名，并修改里面的板子名字
 
+  <img width="1110" height="201" alt="image" src="https://github.com/user-attachments/assets/15bca4b2-d5f0-470f-b745-08daf80d912e" />
+
+  只需要修改红色框住的地方即可。蓝色框内无需修改
+
+  为什么呢？首先，第一个红色框指定生成 i.MX 处理器启动所需的“镜像头”时，用到的初始化配置文件。
+  
+  第三行的红框也好理解，这一行的作用是指定编译的板子类型，也就是相应的板级文件，会影响其他文件的编译，如图
+  <img width="1270" height="759" alt="image" src="https://github.com/user-attachments/assets/aaa29bd2-6463-4075-865e-27db6575a486" />
+
+
+  第一行的篮框可以不修改的原因是，这个是EMMC驱动的宏定义，在mx6ullevk.c板级文件中有这样的定义
+
+  <img width="1838" height="922" alt="b0815369bfb4caf1a86a5d6533869b89" src="https://github.com/user-attachments/assets/7589a59b-7c48-4c20-aa00-5e95f8e9fd3b" />
+
+  并且这个宏定义只有在mx6ullevk.c文件中存在，并且有很多，要改的话很费劲，所以建议不改
+
+  第二步：修改板级文件夹
+    进入include/configs目录下，找到对应的板级文件，我对应的是mx6ullevk.h，只需要把宏定义改掉即可
+
+  <img width="1136" height="911" alt="image" src="https://github.com/user-attachments/assets/7352689c-4dc0-48a4-ad2d-2f4f275a4d85" />
+
+  拷贝一份板级文件夹，进入board/freescale中，将对应的文件夹拷贝一份，我对应的是mx6ullevk
+
+  把mx6ullevk.c文件名字改名(里面不包含mx6ullevk的宏定义和引用，所以里面不需要动)；把Makefile文件的obj-y名字改掉；把Kconfig里面的if判断和default改掉；把imximage.cfg的mx6ullevk改掉；把MAINTAINERS里面的mx6ullevk名字改掉并删除config俩行，没用。
+
+  
+
+
+
+  
+
+
 
   
   
