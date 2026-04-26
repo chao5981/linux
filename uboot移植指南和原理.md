@@ -106,7 +106,21 @@ make一个xxx_deconfig文件以生成一个.config文件，然后再make编译�
 
   <img width="670" height="60" alt="image" src="https://github.com/user-attachments/assets/c0400611-a7a0-463c-b334-cf005b532763" />
 
+
   添加这些，为了支持图形化配置
+
+
+  如果编译完成后，grep一下你Include/configs修改的.h文件名字，例如：
+        
+      grep -nR "mx6ull_alientek_emmc.h
+
+  如果输出类似于这样，就代表板子添加成功了！
+
+  <img width="1526" height="946" alt="image" src="https://github.com/user-attachments/assets/e4947325-b6a9-4a05-aeb4-443b5206940f" />
+
+  <img width="1424" height="907" alt="image" src="https://github.com/user-attachments/assets/68229244-c6f4-4ece-8d4c-ed0770f99961" />
+
+  接下来我们我们进入到第二步：根据板子外设的变化修改板级文件
 
   
 
