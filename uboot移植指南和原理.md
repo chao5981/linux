@@ -98,6 +98,18 @@ make一个xxx_deconfig文件以生成一个.config文件，然后再make编译�
 
   把mx6ullevk.c文件名字改名(里面不包含mx6ullevk的宏定义和引用，所以里面不需要动)；把Makefile文件的obj-y名字改掉；把Kconfig里面的if判断和default改掉；把imximage.cfg的mx6ullevk改掉；把MAINTAINERS里面的mx6ullevk名字改掉并删除config俩行，没用。
 
+  其实改完这些第一步就算完成了，但是如果要修改图形化配置的话，还需要往下做：
+
+  修改对应的图形化配置文件
+
+  <img width="670" height="493" alt="696136a5a5656c7d619b80f81e3e4f85" src="https://github.com/user-attachments/assets/85a9e56c-b66a-4497-a123-d6e4fb136f60" />
+
+  <img width="670" height="60" alt="image" src="https://github.com/user-attachments/assets/c0400611-a7a0-463c-b334-cf005b532763" />
+
+  添加这些，为了支持图形化配置
+
+  
+
   
 
 
